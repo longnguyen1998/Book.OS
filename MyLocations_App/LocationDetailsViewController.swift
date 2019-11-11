@@ -1,5 +1,6 @@
 import UIKit
 import CoreLocation
+import CoreData
 
 private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
@@ -14,6 +15,12 @@ class LocationDetailsViewController : UITableViewController {
     var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     var placemark : CLPlacemark?
     var categoryName = "No Category"
+    var managedObjectContext: NSManagedObjectContext!
+    let context = delegate.managedObjectContext
+    // do something with the context
+    var date = Date()
+    
+    
     
     @IBOutlet weak private var descriptionTextView: UITextView!
     @IBOutlet weak private var categoryLabel: UILabel!
@@ -35,7 +42,7 @@ class LocationDetailsViewController : UITableViewController {
         } else {
             addressLabel.text = "No Address Found"
         }
-        dateLabel.text = format(date: Date())
+        dateLabel.text = format(date: date)
         // Hide keyboard
         let gestureRecognizer = UITapGestureRecognizer(target: self,
                                                        action: #selector(hideKeyboard))
@@ -77,11 +84,47 @@ class LocationDetailsViewController : UITableViewController {
     
     // MARK:- Actions
     @IBAction func done() {
-//        navigationController?.popViewController(animated: true)
+//        let hudView = HudView.hud(inView: navigationController!.view,
+//                                  animated: true)
+//        hudView.text = "Tagged"
+//        //        afterDelay(0.6, run: {
+//        //            hudView.hide()
+//        //            self.navigationController?.popViewController(animated: true)
+//        //        })
+//
+//        afterDelay(0.6) {
+//            hudView.hide()
+//            self.navigationController?.popViewController(animated: true)
+//        }
+//
+        
         
         let hudView = HudView.hud(inView: navigationController!.view,
         animated: true)
         hudView.text = "Tagged"
+        // 1
+        let location = Location(context: managedObjectContext)
+        // 2
+        location.locationDescription = descriptionTextView.text
+        location.category = categoryName
+        location.latitude = coordinate.latitude
+        location.longitude = coordinate.longitude
+        location.date = date
+        location.placemark = placemark
+        // 3
+        do {
+        try managedObjectContext.save()
+        afterDelay(0.6) {
+        hudView.hide()
+        self.navigationController?.popViewController(
+        animated: true)
+        }
+        } catch {
+        // 4
+        //fatalError("Error: \(error)")
+            fatalCoreDataError(error)
+        }
+        
     }
     @IBAction func cancel() {
         navigationController?.popViewController(animated: true)
@@ -122,14 +165,14 @@ extension LocationDetailsViewController {
     }
     
     @objc func hideKeyboard(_ gestureRecognizer:
-     UIGestureRecognizer) {
-     let point = gestureRecognizer.location(in: tableView)
-     let indexPath = tableView.indexPathForRow(at: point)
-     if indexPath != nil && indexPath!.section == 0
-     && indexPath!.row == 0 {
-     return
-     }
-     descriptionTextView.resignFirstResponder()
+        UIGestureRecognizer) {
+        let point = gestureRecognizer.location(in: tableView)
+        let indexPath = tableView.indexPathForRow(at: point)
+        if indexPath != nil && indexPath!.section == 0
+            && indexPath!.row == 0 {
+            return
+        }
+        descriptionTextView.resignFirstResponder()
     }
     
 }
