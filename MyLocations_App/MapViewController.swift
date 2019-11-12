@@ -12,9 +12,25 @@ import CoreData
 class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     var managedObjectContext: NSManagedObjectContext! = appDelegate.persistentContainer.viewContext
+    {
+        didSet {
+            NotificationCenter.default.addObserver(forName:
+                Notification.Name.NSManagedObjectContextObjectsDidChange,
+                                                   object: managedObjectContext,
+                                                   queue: OperationQueue.main) { notification in
+                                                    if self.isViewLoaded {
+                                                        self.updateLocations()
+                                                    }
+            }
+        }
+    }
     var locations = [Location]()
     
-    override func viewDidLoad() {
+ 
+    
+    
+    override func
+        viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
         updateLocations()
@@ -23,7 +39,19 @@ class MapViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditLocation" {
+            let controller = segue.destination
+                as! LocationDetailsViewController
+            controller.managedObjectContext = managedObjectContext
+            let button = sender as! UIButton
+            let location = locations[button.tag]
+            controller.locationToEdit = location
+        }
+    }
+    
     @objc func showLocationDetails(_ sender: UIButton) {
+        performSegue(withIdentifier: "EditLocation", sender: sender)
     }
     
     // MARK:- Actions
@@ -163,7 +191,7 @@ extension MapViewController{
     }
     
     
-
+    
     
 }
 

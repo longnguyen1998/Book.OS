@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -89,7 +89,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1748" y="-490"/>
+            <point key="canvasLocation" x="2799" y="-490"/>
         </scene>
         <!--Tag Location-->
         <scene sceneID="eB6-1E-ddb">
@@ -159,14 +159,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Add Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="stb-tL-s3X">
-                                                    <rect key="frame" x="16" y="0.0" width="261" height="44"/>
+                                                    <rect key="frame" x="16" y="0.0" width="80.5" height="44"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b9q-FZ-QF1">
+                                                    <rect key="frame" x="135" y="11" width="137" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="MnU-AL-E27"/>
+                                                        <constraint firstAttribute="width" constant="137" id="Qg8-bR-bgv"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="b9q-FZ-QF1" firstAttribute="top" secondItem="1fr-ch-Wzd" secondAttribute="topMargin" id="5RG-9g-s9I"/>
                                                 <constraint firstItem="stb-tL-s3X" firstAttribute="leading" secondItem="1fr-ch-Wzd" secondAttribute="leading" constant="16" id="aKM-h9-dQp"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="b9q-FZ-QF1" secondAttribute="trailing" id="eff-in-3jd"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="b9q-FZ-QF1" secondAttribute="bottom" id="sXT-Kw-sCs"/>
+                                                <constraint firstItem="b9q-FZ-QF1" firstAttribute="leading" secondItem="1fr-ch-Wzd" secondAttribute="leadingMargin" id="w86-vL-FPz"/>
                                                 <constraint firstAttribute="trailing" secondItem="stb-tL-s3X" secondAttribute="trailing" constant="16" id="ygJ-DW-wlt"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -292,17 +303,20 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addPhotoLabel" destination="stb-tL-s3X" id="DJ8-rJ-Vm3"/>
                         <outlet property="addressLabel" destination="Igz-Um-a1c" id="IXz-D3-HXc"/>
                         <outlet property="categoryLabel" destination="mnx-Dk-ti4" id="Vcn-N5-u7r"/>
                         <outlet property="dateLabel" destination="eoo-Yd-KvC" id="1dK-c7-Gp2"/>
                         <outlet property="descriptionTextView" destination="Uc9-OD-TGE" id="0aP-we-ZB6"/>
+                        <outlet property="imageHeight" destination="MnU-AL-E27" id="jtB-bS-9YQ"/>
+                        <outlet property="imageView" destination="b9q-FZ-QF1" id="0wF-jf-iGV"/>
                         <outlet property="latitudeLabel" destination="kcz-mI-w3o" id="e7V-qg-59M"/>
                         <outlet property="longitudeLabel" destination="AJx-Bq-wmU" id="ikh-wK-NN3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6h4-4J-MAQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2668" y="-490"/>
+            <point key="canvasLocation" x="2799.375" y="296.83098591549299"/>
         </scene>
         <!--Category Picker View Controller-->
         <scene sceneID="4cs-1Q-784">
@@ -344,7 +358,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xup-4E-WBI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="6iD-88-aHj" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3564" y="-490"/>
+            <point key="canvasLocation" x="3926" y="297"/>
         </scene>
         <!--Locations-->
         <scene sceneID="6Mf-pm-7o5">
@@ -450,6 +464,7 @@
                         <barButtonItem key="leftBarButtonItem" title="Locations" id="fgr-A0-xkk">
                             <connections>
                                 <action selector="showLocations" destination="WTV-08-Xs9" id="37y-KP-TcB"/>
+                                <segue destination="3Sn-5U-agZ" kind="show" identifier="EditLocation" id="MZy-BX-LTT"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="User" id="Z0Z-RZ-Kyh">
@@ -464,7 +479,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lou-QA-cgH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="789.375" y="1167.2535211267607"/>
+            <point key="canvasLocation" x="1748" y="1167"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -531,6 +546,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dIC-e8-5hx"/>
+        <segue reference="MZy-BX-LTT"/>
     </inferredMetricsTieBreakers>
 </document>
