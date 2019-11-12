@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-let delegate = UIApplication.shared.delegate as! AppDelegate
+let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
 
 @UIApplicationMain
@@ -34,6 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions:
         [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -41,12 +43,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tabController
         
         if let tabViewControllers = tabController.viewControllers {
-            let navController = tabViewControllers[0]
+            // First tab
+            var navController = tabViewControllers[0]
                 as! UINavigationController
-            let controller = navController.viewControllers.first
+            let controller1 = navController.viewControllers.first
                 as! CurrentLocationViewController
-            controller.managedObjectContext = managedObjectContext
+            controller1.managedObjectContext = managedObjectContext
+            // Second tab
+            navController = tabViewControllers[1]
+                as! UINavigationController
+            let controller2 = navController.viewControllers.first
+                as! LocationsViewController
+            controller2.managedObjectContext = managedObjectContext
+            
+            // Third tab
+            navController = tabViewControllers[2] as! UINavigationController
+            let controller3 = navController.viewControllers.first
+                as! MapViewController
+            controller3.managedObjectContext = managedObjectContext
+            
         }
+        
+        
         print(applicationDocumentsDirectory)
         listenForFatalCoreDataNotifications()
         return true
