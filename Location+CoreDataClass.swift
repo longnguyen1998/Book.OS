@@ -20,7 +20,7 @@ public class Location: NSManagedObject , MKAnnotation  {
     
     var photoURL: URL {
         assert(photoID != nil, "No photo ID set")
-        let filename = "Photo-\(photoID!.intValue).jpg"
+        let filename = "Photo-\(photoID).jpg"
         return applicationDocumentsDirectory.appendingPathComponent(
             filename)
     }
@@ -50,10 +50,16 @@ public class Location: NSManagedObject , MKAnnotation  {
 extension Location{
     class func nextPhotoID() -> Int {
         let userDefaults = UserDefaults.standard
-        let currentID = userDefaults.integer(forKey: "PhotoID") + 1
-        userDefaults.set(currentID, forKey: "PhotoID")
-        userDefaults.synchronize()
-        return currentID
+        if let currentID = userDefaults.object(forKey: "PhotoID") as? Int {
+            userDefaults.set(currentID + 1, forKey: "PhotoID")
+            userDefaults.synchronize()
+            return currentID + 1
+        } else {
+            userDefaults.set(0, forKey: "PhotoID")
+            userDefaults.synchronize()
+            return 0
+        }
+        
     }
     
     func removePhotoFile() {

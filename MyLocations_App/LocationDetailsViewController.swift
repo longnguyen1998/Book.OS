@@ -103,11 +103,10 @@ class LocationDetailsViewController : UITableViewController {
         if indexPath.section == 0 && indexPath.row == 0 {
             descriptionTextView.becomeFirstResponder()
         } else if indexPath.section == 1 && indexPath.row == 0 {
-            choosePhotoFromLibrary()
-            
+            tableView.deselectRow(at: indexPath, animated: true)
+            pickPhoto()
         }
-        tableView.deselectRow(at: indexPath, animated: true)
-        pickPhoto()
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -145,7 +144,7 @@ class LocationDetailsViewController : UITableViewController {
         if let image = image {
             // 1   734
             if !location.hasPhoto {
-                location.photoID = Location.nextPhotoID() as NSNumber
+                location.photoID = String(Location.nextPhotoID())
             }
             // 2
             if let data = image.jpegData(compressionQuality: 0.5) {

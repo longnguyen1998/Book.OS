@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -464,7 +464,6 @@
                         <barButtonItem key="leftBarButtonItem" title="Locations" id="fgr-A0-xkk">
                             <connections>
                                 <action selector="showLocations" destination="WTV-08-Xs9" id="37y-KP-TcB"/>
-                                <segue destination="3Sn-5U-agZ" kind="show" identifier="EditLocation" id="MZy-BX-LTT"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="User" id="Z0Z-RZ-Kyh">
@@ -475,6 +474,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="6t8-hw-5LU" id="aF7-fc-NjA"/>
+                        <segue destination="3Sn-5U-agZ" kind="show" identifier="EditLocation" id="cOo-Lf-UTc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lou-QA-cgH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -546,6 +546,6 @@
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="MZy-BX-LTT"/>
+        <segue reference="cOo-Lf-UTc"/>
     </inferredMetricsTieBreakers>
 </document>
