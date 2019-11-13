@@ -56,9 +56,19 @@ class LocationDetailsViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if let location = locationToEdit {
             title = "Edit Location"
+            // New code block
+            if location.hasPhoto {
+                if let theImage = location.photoImage {
+                    show(image: theImage)
+                }
+            }
+            // End of new code
         }
+        
+
         descriptionTextView.text = descriptionText
         categoryLabel.text = categoryName
         latitudeLabel.text = String(format: "%.8f",
@@ -128,7 +138,27 @@ class LocationDetailsViewController : UITableViewController {
         else{
             hudView.text = "Tagged"
             location = Location(context: managedObjectContext)
+            location.photoID = nil   // add this
         }
+        
+        // Save image
+        if let image = image {
+            // 1   734
+            if !location.hasPhoto {
+                location.photoID = Location.nextPhotoID() as NSNumber
+            }
+            // 2
+            if let data = image.jpegData(compressionQuality: 0.5) {
+                // 3
+                do {
+                    try data.write(to: location.photoURL, options: .atomic)
+                } catch {
+                    print("Error writing file: \(error)")
+                }
+            }
+        }
+        
+        
         location.locationDescription = descriptionTextView.text
         location.category = categoryName
         location.latitude = coordinate.latitude
@@ -136,6 +166,10 @@ class LocationDetailsViewController : UITableViewController {
         location.date = date
         findPlace(name: categoryName) { (placemark) in
             location.placemark = placemark
+            
+            
+            
+            
             
             // 3
             do {
