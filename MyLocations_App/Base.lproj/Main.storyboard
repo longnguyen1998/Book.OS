@@ -447,26 +447,24 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6t8-hw-5LU">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="Nz5-H8-gHk"/>
-                                    <constraint firstAttribute="height" constant="568" id="xCT-gX-9dz"/>
-                                </constraints>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="6t8-hw-5LU" firstAttribute="centerY" secondItem="umE-Af-kHX" secondAttribute="centerY" id="fAQ-T5-SEG"/>
-                            <constraint firstItem="6t8-hw-5LU" firstAttribute="centerX" secondItem="umE-Af-kHX" secondAttribute="centerX" id="hMZ-rc-ZRH"/>
+                            <constraint firstItem="6t8-hw-5LU" firstAttribute="trailing" secondItem="HtY-7f-PF3" secondAttribute="trailing" id="7BQ-Hl-G9r"/>
+                            <constraint firstAttribute="bottom" secondItem="6t8-hw-5LU" secondAttribute="bottom" id="PiR-M4-OXh"/>
+                            <constraint firstItem="6t8-hw-5LU" firstAttribute="top" secondItem="umE-Af-kHX" secondAttribute="top" id="Vrt-JO-lPU"/>
+                            <constraint firstItem="6t8-hw-5LU" firstAttribute="leading" secondItem="HtY-7f-PF3" secondAttribute="leading" id="Xw0-6O-1XA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HtY-7f-PF3"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="pxX-yX-j1A">
-                        <barButtonItem key="leftBarButtonItem" title="Locations" id="fgr-A0-xkk">
+                        <barButtonItem key="leftBarButtonItem" title="Locations" image="location.fill" catalog="system" id="fgr-A0-xkk">
                             <connections>
                                 <action selector="showLocations" destination="WTV-08-Xs9" id="37y-KP-TcB"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="User" id="Z0Z-RZ-Kyh">
+                        <barButtonItem key="rightBarButtonItem" title="User" image="person.circle" catalog="system" id="Z0Z-RZ-Kyh">
                             <connections>
                                 <action selector="showUser" destination="WTV-08-Xs9" id="Cgu-tU-NpC"/>
                             </connections>
@@ -542,7 +540,9 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
+        <image name="location.fill" catalog="system" width="64" height="56"/>
         <image name="map.fill" catalog="system" width="64" height="56"/>
+        <image name="person.circle" catalog="system" width="64" height="60"/>
         <image name="second" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
